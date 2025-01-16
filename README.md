@@ -154,3 +154,19 @@ public function destroy(Product $product)
 })->create();
 ```
 ---
+
+## Create
+![image](https://github.com/user-attachments/assets/cf51d614-e312-4182-96e9-9d4663e68c79)
+---
+## Update
+![image](https://github.com/user-attachments/assets/7a15afcd-2890-42cd-a45e-569bddb47439)
+---
+## Delete
+![image](https://github.com/user-attachments/assets/bf248e30-f96b-4793-8a3a-6ff500b23d3f)
+---
+## No Records
+![image](https://github.com/user-attachments/assets/de340274-daf7-4ed3-8661-08cdad7b8ea3)
+---
+
+
+
