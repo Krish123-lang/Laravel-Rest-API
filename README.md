@@ -71,3 +71,33 @@ return [
 ];
 ```
 ---
+### Api/ProductController.php
+```
+public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'description' => 'required',
+            'price' => 'required|numeric|min:1'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'All fields are mandatory!',
+                'error' => $validator->messages(),
+            ], 422);
+        }
+
+        $product = Product::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price
+        ]);
+
+        return response()->json([
+            'message' => 'Product Created Successfully !',
+            'data' => new ProductResource($product),
+        ], 200);
+    }
+```
+---
