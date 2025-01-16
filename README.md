@@ -101,3 +101,32 @@ public function store(Request $request)
     }
 ```
 ---
+### Api/ProductController.php
+```
+public function update(Request $request, Product $product) {
+    $validator = Validator::make($request->all(), [
+        'name' => 'required|string|max:255',
+        'description' => 'required',
+        'price' => 'required|numeric|min:1'
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json([
+            'message' => 'All fields are mandatory!',
+            'error' => $validator->messages(),
+        ], 422);
+    }
+
+    $product->update([
+        'name' => $request->name,
+        'description' => $request->description,
+        'price' => $request->price
+    ]);
+
+    return response()->json([
+        'message' => 'Product Updated Successfully !',
+        'data' => new ProductResource($product),
+    ], 200);
+}
+```
+---
