@@ -130,3 +130,27 @@ public function update(Request $request, Product $product) {
 }
 ```
 ---
+### Api/ProductController.php
+```
+public function destroy(Product $product)
+{
+    $product->delete();
+    return response()->json([
+        'message' => 'Product Deleted Successfully !',
+    ], 200);
+}
+```
+
+### bootstrap/app.php
+```
+->withExceptions(function (Exceptions $exceptions) {
+    $exceptions->render(function (NotFoundHttpException $e, Request $request){
+        if($request->is('api/*')){
+            return response()->json([
+                'message'=>'Record not found!'
+            ], 404);
+        }
+    });
+})->create();
+```
+---
